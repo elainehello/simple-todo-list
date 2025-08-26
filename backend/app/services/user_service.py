@@ -15,18 +15,18 @@ def create_user(db: Session, user: UserCreate) -> User:
     )
     db.add(db_user)
     db.commit()
-    db.refresh(db-user)
+    db.refresh(db_user)
     return db_user
 
 def get_user(db: Session, user_id: UUID) -> User | None:
-    return db.query(User).filter(User.email == email).first()
+    return db.query(User).filter(User.id == user_id).first()
 
 def update_user(db: Session, user_id: UUID, user_update: UserUpdate) -> User | None:
     db_user = get_user(db, user_id)
     if not db_user:
         return None
 
-    for field, value in user_update.model_dump(exclude_unset=True).items()
+    for field, value in user_update.model_dump(exclude_unset=True).items():
         if field == "password":
             value = get_password_hash(value)
             setattr(db_user, "hashed_password", value)
@@ -38,7 +38,7 @@ def update_user(db: Session, user_id: UUID, user_update: UserUpdate) -> User | N
     db.refresh(db_user)
     return db_user
 
-def delete_user(db: Session, user_id: UUID):
+def delete_user(db: Session, user_id: UUID) -> bool:
     db_user = get_user(db, user_id)
     if not db_user:
         return False
