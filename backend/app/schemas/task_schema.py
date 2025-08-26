@@ -20,7 +20,7 @@ class TaskUpdate(BaseModel):
 
 class TaskResponse(TaskBase):
     id: UUID
-    create_at: datetime
+    created_at: datetime
     updated_at: datetime
 
     class Config:
