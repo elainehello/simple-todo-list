@@ -1,0 +1,4 @@
+FastAPI run:
+
+
+>$ uvicorn app.routes.main:app --reload
