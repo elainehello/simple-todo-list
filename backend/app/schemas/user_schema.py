@@ -1,6 +1,8 @@
 from pydantic import BaseModel, EmailStr, constr, Field
 from uuid import UUID
 from datetime import datetime
+from re import Pattern
+from typing import Optional
 
 class UserBase(BaseModel):
     username: str
@@ -10,9 +12,9 @@ class UserCreate(UserBase):
     password: constr = Field(min_length=6)
 
 class UserUpdate(BaseModel):
-    username: str | None = None
-    email: EmailStr | None = None
-    password: constr | None = Field(default=None, min_length=6)
+    username: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[constr] = Field(default=None, min_length=6)
 
 class UserResponse(UserBase):
     id: UUID
