@@ -1,7 +1,6 @@
 from pydantic import BaseModel, EmailStr, constr, Field
 from uuid import UUID
 from datetime import datetime
-from re import Pattern
 from typing import Optional
 
 class UserBase(BaseModel):
