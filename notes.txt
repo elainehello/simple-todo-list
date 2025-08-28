@@ -2,3 +2,7 @@ FastAPI run:
 
 
 >$ uvicorn app.routes.main:app --reload
+
+DB run:
+>$ cd backend
+>$ python -m app.core.init_db
