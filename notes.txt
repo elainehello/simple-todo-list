@@ -1,6 +1,5 @@
 FastAPI run:
-
-
+>$ cd backend
 >$ uvicorn app.routes.main:app --reload
 
 DB run:
