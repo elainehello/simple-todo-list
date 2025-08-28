@@ -1,0 +1,65 @@
+# Frontend Development Notes
+
+## 1. Project Setup
+
+# From your root project folder
+cd frontend
+
+# Initialize Vite + React
+npm create vite@latest . -- --template react
+
+# Install dependencies
+npm install
+npm install react-router-dom axios
+
+# For Tailwind CSS (optional, for styling)
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+# For code quality (optional)
+npm install -D eslint prettier eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+
+## 2. Useful Scripts
+
+# Start development server
+npm run dev
+
+# Format code
+npx prettier --write src
+
+# Lint code
+npx eslint src
+
+## 3. Project Structure (suggested)
+
+src/
+  components/      # Reusable UI components
+  context/         # Auth context/provider
+  hooks/           # Custom React hooks
+  pages/           # Page components (Login, Register, Dashboard, etc.)
+  services/        # API calls (api.js)
+  styles/          # CSS or Tailwind files
+  App.jsx          # Main app and routes
+  index.jsx        # Entry point
+
+## 4. API Integration
+
+# Set your backend API base URL in src/services/api.js
+# Example:
+export const API_BASE_URL = "http://127.0.0.1:8000/api/v1";
+
+# Use axios for HTTP requests to backend endpoints
+
+## 5. Tips
+
+- Always use unique emails/usernames for registration during testing.
+- If you get CORS errors, ensure FastAPI backend has CORS middleware enabled.
+- Use browser dev tools and network tab to debug API requests.
+- Use pgAdmin or psql to inspect backend data if needed.
+
+---
+
+# See README.md for more details and backend setup.
+
+
+## keyword: Commands to Scaffold the Project
