@@ -8,7 +8,7 @@ from app.services.user_service import create_user, get_user, update_user, delete
 from app.core.database import get_db
 from app.utils.security import verify_password, create_access_token
 
-router = APIRouter(prefix="/api/v1/users", tags=["Users"])
+router = APIRouter(tags=["Users"])
 
 @router.post("/register", response_model=UserResponse)
 def register(user: UserCreate, db: Session = Depends(get_db)):
