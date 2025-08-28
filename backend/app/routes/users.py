@@ -7,6 +7,7 @@ from app.schemas.user_schema import UserCreate, UserUpdate, UserResponse, UserLo
 from app.services.user_service import create_user, get_user, update_user, delete_user, get_user_by_email
 from app.core.database import get_db
 from app.utils.security import verify_password, create_access_token
+from app.models import User
 
 router = APIRouter(tags=["Users"])
 
@@ -15,7 +16,12 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     existing_user = get_user_by_email(db, user.email)
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
-    return create_user(db, user)
+    # Add this check:
+    existing_username = db.query(User).filter_by(username=user.username).first()
+    if existing_username:
+        raise HTTPException(status_code=400, detail="Username already taken")
+    db_user = create_user(db, user)
+    return UserResponse.from_orm(db_user)
 
 @router.post("/login", response_model=Token)
 def login(user: UserLogin, db: Session = Depends(get_db)):
@@ -30,14 +36,14 @@ def read_user(user_id: UUID, db: Session = Depends(get_db)):
     db_user = get_user(db, user_id)
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
-    return db_user
+    return UserResponse.from_orm(db_user)
 
 @router.put("/{user_id}", response_model=UserResponse)
 def edit_user(user_id: UUID, user_update: UserUpdate, db: Session = Depends(get_db)):
     updated_user = update_user(db, user_id, user_update)
     if not updated_user:
         raise HTTPException(status_code=404, detail="User not found")
-    return updated_user
+    return UserResponse.from_orm(updated_user)
 
 @router.delete("/{user_id}", response_model=dict)
 def remove_user(user_id: UUID, db: Session = Depends(get_db)):
