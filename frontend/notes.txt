@@ -13,9 +13,10 @@ npm install
 npm install react-router-dom axios
 
 # For Tailwind CSS (optional, for styling)
-npm install -D tailwindcss postcss autoprefixer
+npm install tailwindcss @tailwindcss/cli
+npm install -D tailwindcss@3 postcss autoprefixer
 npx tailwindcss init -p
-
+                
 # For code quality (optional)
 npm install -D eslint prettier eslint-config-prettier eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-jsx-a11y
 

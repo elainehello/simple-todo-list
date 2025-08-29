@@ -1,0 +1,17 @@
+React fundamentals
+
+Components are (pages) to show for each URL path.
+
+### Why are these imports required?
+
+- **`BrowserRouter`**:  
+  This component enables client-side routing using the browser's history API. It wraps your app and allows navigation without full page reloads.
+
+- **`Routes`**:  
+  This component is a container for all your route definitions. It matches the current URL to the correct `Route` child.
+
+- **`Route`**:  
+  Each `Route` defines a path and the component to render when the URL matches that path.
+
+---
+
